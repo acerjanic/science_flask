@@ -1,4 +1,4 @@
-#!/home/daniel/.virtualenvs/sf/bin/python
+#!/Users/alexcerjanic/Developer/science_flask/venv/bin/python3
 from frontend import app, db
 from flask_script import Manager, Server
 from flask_migrate import Migrate, MigrateCommand

@@ -1,5 +1,6 @@
 import os
 import numpy as np
+import sys
 from backend.utils.check_uploaded_files import open_file
 
 def top_variance(params):
@@ -15,7 +16,9 @@ def top_variance(params):
         path = os.path.join(params['study_folder'], params[dataset])
         X, sep = open_file(path)
         # keep only the top N var features
-        X = X[np.argsort(X.var())[-int(feat_num):]]
+        top_var_ix = np.array(sorted(np.argsort(X.var())[-int(feat_num):]))
+        X = X.iloc[top_var_ix]
+        #X = X[np.argsort(X.var())[-int(feat_num):]]
         filename, ext = os.path.splitext(params[dataset])
         params[dataset] = filename + '_topvar' + ext
         path = os.path.join(params['output_folder'], params[dataset])
